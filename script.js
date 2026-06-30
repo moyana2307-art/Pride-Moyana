@@ -122,3 +122,83 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+document.getElementById('portfolio-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        message: document.getElementById('message').value
+    };
+
+    const submitBtn = document.querySelector('.form-submit');
+    submitBtn.disabled = true;
+    submitBtn.innerText = "Sending...";
+
+    try {
+        const response = await fetch('http://127.0.0.1:8000/api/contact', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        });
+
+        if (response.ok) {
+            alert('Message dropped successfully! I will touch base soon.');
+            document.getElementById('portfolio-form').reset();
+        } else {
+            alert('Something went sideways. Please try again.');
+        }
+    } catch (error) {
+        console.error('Network Error:', error);
+        alert('Unable to link with server infrastructure.');
+    } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = `<span>Send Message</span> <i class="fas fa-paper-plane"></i>`;
+    }
+});
+
+document.getElementById('portfolio-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // Collect Input fields
+    const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        message: document.getElementById('message').value
+    };
+
+    const submitBtn = document.querySelector('.form-submit');
+    const originalBtnText = submitBtn.innerHTML;
+    
+    // UI Loading state
+    submitBtn.disabled = true;
+    submitBtn.innerText = "Transmission opening...";
+
+    try {
+        const response = await fetch('http://127.0.0.1:8000/api/contact', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+            alert('🚀 Message delivered straight to Pride\'s inbox!');
+            document.getElementById('portfolio-form').reset();
+        } else {
+            alert('Server side error: ' + result.detail);
+        }
+    } catch (error) {
+        console.error('Connection failure:', error);
+        alert('Could not bridge connection with the Python background server.');
+    } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnText;
+    }
+});
