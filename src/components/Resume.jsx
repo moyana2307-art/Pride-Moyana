@@ -18,7 +18,7 @@ export default function Resume() {
           <h3>Certifications</h3>
           <div className="certifications-grid">
             <div className="cert-item"><i className="fas fa-certificate"></i> Freecodecamp Python Certificate</div>
-            <div className="cert-item"><i className="fas fa-certificate"></i> Crash Course on Python (Coursera)</div>
+            <div className="cert-item"><i className="fas fa-certificate"></i> Crash Course on Python (Coursera - Google)</div>
             <div className="cert-item"><i className="fas fa-certificate"></i> Certificate in Product Designing</div>
             <div className="cert-item"><i className="fas fa-certificate"></i> Certificate in Core UI Components</div>
             <div className="cert-item"><i className="fas fa-certificate"></i> Certificate in UX Design Foundations</div>
