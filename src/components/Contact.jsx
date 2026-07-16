@@ -41,7 +41,7 @@ export default function Contact() {
         <h2 className="section-title">Get In <span className="gradient-text">Touch</span></h2>
 
         <div className="contact-split-layout">
-          <div className="contact-details">
+          <div className="contact-details reveal-on-view">
             <h3>Contact Information</h3>
             <p><i className="fas fa-envelope"></i> moyana2307@gmail.com</p>
             <p><i className="fas fa-phone-alt"></i> +263 777 452 902</p>
@@ -53,7 +53,7 @@ export default function Contact() {
             </div>
           </div>
 
-          <div className="contact-card">
+          <div className="contact-card reveal-on-view" style={{ transitionDelay: '0.15s' }}>
             <form className="contact-form" onSubmit={handleSubmit}>
               <div className="form-group">
                 <input type="text" id="name" required placeholder=" " value={formData.name} onChange={handleChange} />

@@ -5,7 +5,7 @@ export default function Resume() {
         <h2 className="section-title">Professional <span className="gradient-text">Resume</span></h2>
         <div className="resume-download-bar"></div>
 
-        <div className="resume-section-group">
+        <div className="resume-section-group reveal-on-view">
           <h3>Professional Experience</h3>
           <div className="experience-card">
             <h4>Press Operator</h4>
@@ -14,7 +14,7 @@ export default function Resume() {
           </div>
         </div>
 
-        <div className="resume-section-group">
+        <div className="resume-section-group reveal-on-view" style={{ transitionDelay: '0.15s' }}>
           <h3>Certifications</h3>
           <div className="certifications-grid">
             <div className="cert-item"><i className="fas fa-certificate"></i> Freecodecamp Python Certificate</div>
@@ -26,7 +26,7 @@ export default function Resume() {
           </div>
         </div>
 
-        <div className="resume-section-group">
+        <div className="resume-section-group reveal-on-view" style={{ transitionDelay: '0.3s' }}>
           <h3>Key Achievements</h3>
           <ul className="achievements-list">
             <li><i className="fas fa-trophy"></i> Designed and developed multiple responsive web applications with clean, user-focused interfaces.</li>
@@ -34,7 +34,7 @@ export default function Resume() {
           </ul>
         </div>
 
-        <div className="resume-section-group">
+        <div className="resume-section-group reveal-on-view" style={{ transitionDelay: '0.45s' }}>
           <h3>Current Focus & Learning</h3>
           <div className="learning-card">
             <p><i className="fas fa-code-branch"></i> Currently perfecting declarative deep micro-routing engines and state persistence models within standard browser runtimes.</p>

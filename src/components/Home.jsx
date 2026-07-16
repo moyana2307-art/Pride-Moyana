@@ -1,4 +1,58 @@
+import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
+
+function AnimatedStat({ value, label, delay }) {
+  const [count, setCount] = useState(0)
+  const ref = useRef(null)
+  const numericPart = parseInt(value.replace(/[^0-9]/g, ''))
+  const suffix = value.replace(/[0-9]/g, '')
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          let start = 0
+          const duration = 1500
+          const stepTime = 30
+          const steps = duration / stepTime
+          const increment = numericPart / steps
+
+          const timer = setInterval(() => {
+            start += increment
+            if (start >= numericPart) {
+              setCount(numericPart)
+              clearInterval(timer)
+            } else {
+              setCount(Math.floor(start))
+            }
+          }, stepTime)
+
+          observer.unobserve(entry.target)
+        }
+      },
+      { threshold: 0.3 }
+    )
+
+    if (ref.current) observer.observe(ref.current)
+    return () => observer.disconnect()
+  }, [numericPart])
+
+  return (
+    <div className="stat-item" ref={ref}>
+      <h3>{count}{suffix}</h3>
+      <p>{label}</p>
+    </div>
+  )
+}
+
+const skills = [
+  { icon: 'fab fa-html5', label: 'HTML' },
+  { icon: 'fab fa-css3-alt', label: 'CSS' },
+  { icon: 'fab fa-js', label: 'JavaScript' },
+  { icon: 'fab fa-python', label: 'Python' },
+  { icon: 'fab fa-react', label: 'React' },
+  { icon: 'fab fa-django', label: 'Django' },
+]
 
 export default function Home() {
   return (
@@ -24,19 +78,16 @@ export default function Home() {
 
       <section className="home-skills-strip">
         <div className="skills-ticker">
-          <span><i className="fab fa-html5"></i> HTML</span>
-          <span><i className="fab fa-css3-alt"></i> CSS</span>
-          <span><i className="fab fa-js"></i> JavaScript</span>
-          <span><i className="fab fa-python"></i> Python</span>
-          <span><i className="fab fa-react"></i> React</span>
-          <span><i className="fab fa-django"></i> Django</span>
+          {skills.map((skill) => (
+            <span key={skill.label}><i className={skill.icon}></i> {skill.label}</span>
+          ))}
         </div>
       </section>
 
       <section className="featured-projects">
         <h2 className="section-title">Featured <span className="gradient-text">Inventions</span></h2>
         <div className="projects-grid">
-          <div className="project-card">
+          <div className="project-card reveal-on-view">
             <div className="card-image"><i className="fas fa-calendar-check card-icon"></i></div>
             <div className="card-content">
               <h3>Real-Time Booking Platform</h3>
@@ -49,14 +100,14 @@ export default function Home() {
 
       <section className="statistics-section">
         <div className="stats-grid">
-          <div className="stat-item"><h3>5+</h3><p>Projects Delivered</p></div>
-          <div className="stat-item"><h3>90%</h3><p>Client Satisfaction</p></div>
-          <div className="stat-item"><h3>1K+</h3><p>Lines of Code</p></div>
+          <AnimatedStat value="5+" label="Projects Delivered" delay={0} />
+          <AnimatedStat value="90%" label="Client Satisfaction" delay={0.15} />
+          <AnimatedStat value="1K+" label="Lines of Code" delay={0.3} />
         </div>
       </section>
 
       <section className="cta-section">
-        <div className="cta-card">
+        <div className="cta-card reveal-on-view">
           <h2>Have a dynamic project in mind?</h2>
           <Link to="/contact" className="btn btn-primary">Let's Connect Now</Link>
         </div>

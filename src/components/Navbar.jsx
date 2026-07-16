@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
 const navItems = [
@@ -11,12 +11,19 @@ const navItems = [
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
   const location = useLocation()
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20)
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   const handleNavClick = () => setMenuOpen(false)
 
   return (
-    <header className="navbar">
+    <header className={`navbar${scrolled ? ' scrolled' : ''}`}>
       <div className="nav-container">
         <Link to="/" className="logo">Pride<span>Moyana</span></Link>
         <nav className={`nav-menu${menuOpen ? ' active' : ''}`}>

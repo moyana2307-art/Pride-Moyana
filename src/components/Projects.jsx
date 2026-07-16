@@ -56,7 +56,7 @@ export default function Projects() {
         <h2 className="section-title">Complete Portfolio <span className="gradient-text">Catalog</span></h2>
         <div className="projects-grid">
           {projects.map((project, idx) => (
-            <div className="project-card" key={idx}>
+            <div className="project-card reveal-on-view" key={idx} style={{ transitionDelay: `${idx * 0.1}s` }}>
               <div className="card-image"><i className={`${project.icon} card-icon`}></i></div>
               <div className="card-content">
                 <h3>{project.title}</h3>
