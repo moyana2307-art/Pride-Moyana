@@ -8,8 +8,8 @@ export default function Resume() {
         <div className="resume-section-group">
           <h3>Professional Experience</h3>
           <div className="experience-card">
-            <h4>Junior Software Developer</h4>
-            <h5>Epress Computech A4 Printing Solutions Enterprise (2025 - Present)</h5>
+            <h4>Press Operator</h4>
+            <h5>Epress Computech A4 Printing Solutions Enterprise (2024 - 2026)</h5>
             <p>As a Press Operator at a printing company, I operated and monitored printing machinery to produce high-quality printed materials efficiently while ensuring accuracy, consistency, and adherence to production specifications.</p>
           </div>
         </div>
